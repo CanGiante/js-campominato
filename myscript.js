@@ -7,7 +7,7 @@
 // Con difficoltà 0=> tra 1 e 100, con difficoltà 1 => tra 1 e 80, con difficoltà 2=> tra 1 e 50
 
 
-//per 16 volte
+//per 16 volte il pc genera un numero casuale tra 1 e 100.
 for (i = 1; i <= 16; i++) {
 
   var numeroCasuale = fromUpTo(1, 100);
@@ -16,8 +16,8 @@ for (i = 1; i <= 16; i++) {
 
 }
 
-//genera un numero compreso tra il valore 1 e il valore 100 (estremi inclusi)
-function fromUpTo(min, max) {
+//questa funzione genera un numero casuale compreso tra due valori (estremi inclusi)
+function fromUpTo(min, max) { //note: riutilizzabile quando vorrò aumentare la difficoltà del gioco
 
   return Math.floor(Math.random() * (max - min + 1)) + min;
 
