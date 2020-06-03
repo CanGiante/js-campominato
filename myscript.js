@@ -7,22 +7,48 @@
 // Con difficoltà 0=> tra 1 e 100, con difficoltà 1 => tra 1 e 80, con difficoltà 2=> tra 1 e 50
 
 //creo un array di 16 numeri random (ma univoci) compresi fra 1 e 100
-var arrayNumCasuali = [];
+var bombs = [];
 
-while (arrayNumCasuali.length < 16) {
+while (bombs.length < 16) {
 
   var numCasuale = fromUpTo(1, 100);
-  var numDoppio = arrayNumCasuali.includes(numCasuale)
+
+  var numDoppio = bombs.includes(numCasuale)
 
   if (!numDoppio) {
 
-   arrayNumCasuali.push(numCasuale);
+   bombs.push(numCasuale);
 
   }
 
 }
 
-console.log(arrayNumCasuali);
+console.log(bombs);
+
+var isBomb = false;
+var numScelto = parseInt(prompt("inserisci un numero"));
+
+for (var i = 0; i < bombs.length; i++) {
+
+
+  if (bombs[i] === numScelto) {
+
+    isBomb = true;
+
+  }
+
+  if (isBomb === true) {
+
+    alert("hai perso");
+
+  } else {
+
+    alert("bravo");
+  }
+
+
+}
+
 
 
 
