@@ -6,15 +6,22 @@
 // BONUS: all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali.
 // Con difficoltà 0=> tra 1 e 100, con difficoltà 1 => tra 1 e 80, con difficoltà 2=> tra 1 e 50
 
+//creo un array di 16 numeri random compresi fra 1 e 100
+var arrayNumCasuali = [];
 
-//per 16 volte il pc genera un numero casuale tra 1 e 100.
-for (i = 1; i <= 16; i++) {
+for (var i = 0; i < 16; i++) {
 
-  var numeroCasuale = fromUpTo(1, 100);
-
-  console.log(numeroCasuale);
+  arrayNumCasuali.push(fromUpTo(1, 100));
 
 }
+
+console.log(arrayNumCasuali);
+
+
+
+
+
+
 
 //questa funzione genera un numero casuale compreso tra due valori (estremi inclusi)
 function fromUpTo(min, max) { //note: riutilizzabile quando vorrò aumentare la difficoltà del gioco
@@ -22,6 +29,3 @@ function fromUpTo(min, max) { //note: riutilizzabile quando vorrò aumentare la 
   return Math.floor(Math.random() * (max - min + 1)) + min;
 
 }
-
-
-// console.log(numeroCasuale);
