@@ -6,18 +6,23 @@
 // BONUS: all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali.
 // Con difficoltà 0=> tra 1 e 100, con difficoltà 1 => tra 1 e 80, con difficoltà 2=> tra 1 e 50
 
-//creo un array di 16 numeri random compresi fra 1 e 100
+//creo un array di 16 numeri random (ma univoci) compresi fra 1 e 100
 var arrayNumCasuali = [];
 
-for (var i = 0; i < 16; i++) {
+while (arrayNumCasuali.length < 16) {
 
-  arrayNumCasuali.push(fromUpTo(1, 100));
+  var numCasuale = fromUpTo(1, 100);
+  var numDoppio = arrayNumCasuali.includes(numCasuale)
+
+  if (!numDoppio) {
+
+   arrayNumCasuali.push(numCasuale);
+
+  }
 
 }
 
 console.log(arrayNumCasuali);
-
-
 
 
 
