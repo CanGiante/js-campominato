@@ -112,7 +112,7 @@ while ( (isMina === false) && (numeroImmissioniUtente < quantitaNonMine) ) {
 
   }
 
-  if( checkDoppi(numUtente, arrayMine) ) {
+  if (checkDoppi(numUtente, arrayMine)) {
 
     isMina = true;
 
@@ -125,7 +125,7 @@ while ( (isMina === false) && (numeroImmissioniUtente < quantitaNonMine) ) {
 
 }
 
-if(isMina === false) {
+if (isMina === false) {
 
   console.log("vittoria!");
 
