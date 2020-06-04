@@ -7,14 +7,6 @@
 // Con difficoltà 0=> tra 1 e 100, con difficoltà 1 => tra 1 e 80, con difficoltà 2=> tra 1 e 50
 
 //INIZIO FUNZIONI\\
-// //questa funzione genera un numero casuale compreso tra due valori (estremi inclusi)
-// function fromUpTo(min, max) {
-//
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-//
-// }
-// //\
-
 //questa funzione crea un array di n elementi in cui ogni elemento è un numero univoco da min a max
 function creaArrayMine(n, min, max) {
 
@@ -102,18 +94,25 @@ switch (lv) {
 }
 
 var quantitaMine = 16;
-
 var arrayMine = creaArrayMine(quantitaMine, 1, maxRange)
 var quantitaNonMine = (maxRange - quantitaMine);
-
 var numeroImmissioniUtente = 0;
+var arrayImmissioni = []; //NOTE: MANCA CONTROLLO SU IMMISSIONE DI NUM RIPETUTI
 var isMina = false;
 
 while ( (isMina === false) && (numeroImmissioniUtente < quantitaNonMine) ) {
 
-  var numUtente = parseInt(prompt("scegli un numero da 1 a " + maxRange ));
+  var numUtente = parseInt( prompt("scegli un numero da 1 a " + maxRange) );
 
-  if(checkDoppi(numUtente, arrayMine)) {
+  arrayImmissioni.push(numUtente);
+
+  while ( isNaN(numUtente) || numUtente > maxRange || numUtente < 1 ) {
+
+    numUtente = prompt("errore. inserisci un numero valido.");
+
+  }
+
+  if( checkDoppi(numUtente, arrayMine) ) {
 
     isMina = true;
 
@@ -122,6 +121,7 @@ while ( (isMina === false) && (numeroImmissioniUtente < quantitaNonMine) ) {
   numeroImmissioniUtente++;
 
   console.log("hai scelto " + numUtente);
+  console.log(arrayImmissioni);
 
 }
 
