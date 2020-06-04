@@ -7,26 +7,26 @@
 // Con difficoltà 0=> tra 1 e 100, con difficoltà 1 => tra 1 e 80, con difficoltà 2=> tra 1 e 50
 
 //INIZIO FUNZIONI\\
-//questa funzione genera un numero casuale compreso tra due valori (estremi inclusi)
-function fromUpTo(min, max) {
+// //questa funzione genera un numero casuale compreso tra due valori (estremi inclusi)
+// function fromUpTo(min, max) {
+//
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+//
+// }
+// //\
 
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-
-}
-//\
-
-//questa funzione crea un array di 16 mine in cui ogni mina è un numero univoco da 1 a 100)
-function creaArrayMine() {
+//questa funzione crea un array di n elementi in cui ogni elemento è un numero univoco da min a max
+function creaArrayMine(n, min, max) {
 
   ///array da riempire
   var numeriMine = [];
 
   ///loop finché array non è riempito
-  while (numeriMine.length < 16) {
+  while (numeriMine.length < n) {
 
     ////criteri per riempire:
-    ////- numero casuale da 1 a 100
-    var numCasuale = fromUpTo(1, 100);
+    ////- numero casuale da min a max
+    var numCasuale = Math.floor(Math.random() * (max - min + 1)) + min;
 
     ////- solo se non è già presente nell' array
     if ( checkDoppi(numCasuale, numeriMine) === false ) {
@@ -67,7 +67,6 @@ function checkDoppi(elementoDaVerificare, listaDaVagliare) {
 
   }
 
-  console.log(inArray);
   return inArray;
 
 }
@@ -76,13 +75,43 @@ function checkDoppi(elementoDaVerificare, listaDaVagliare) {
 
 
 //GIOCO CAMPO MINATO
-var arrayMine = creaArrayMine();
+alert("scegli il livello di difficoltà");
+
+var lv = prompt("facile - medio - difficile");
+
+switch (lv) {
+
+  case "facile":
+
+    var maxRange = 100;
+
+  break;
+
+  case "medio":
+
+    var maxRange = 80;
+
+  break;
+
+  case "difficile":
+
+    var maxRange = 50;
+
+  break;
+
+}
+
+var quantitaMine = 16;
+
+var arrayMine = creaArrayMine(quantitaMine, 1, maxRange)
+var quantitaNonMine = (maxRange - quantitaMine);
+
 var numeroImmissioniUtente = 0;
 var isMina = false;
 
-while ( (isMina === false) && (numeroImmissioniUtente < 84) ) {
+while ( (isMina === false) && (numeroImmissioniUtente < quantitaNonMine) ) {
 
-  var numUtente = parseInt(prompt("scegli un numero da 1 a 100"));
+  var numUtente = parseInt(prompt("scegli un numero da 1 a " + maxRange ));
 
   if(checkDoppi(numUtente, arrayMine)) {
 
@@ -102,7 +131,7 @@ if(isMina === false) {
 
 } else {
 
-  console.log("boom!" + " il " + numUtente + " era una mina!");
+  console.log("boom! " + numUtente + " era una mina!");
   console.log( "hai perso... " + "il tuo punteggio è " + parseInt((numeroImmissioniUtente - 1)) );
 
 }
