@@ -97,18 +97,28 @@ var quantitaMine = 16;
 var arrayMine = creaArrayMine(quantitaMine, 1, maxRange)
 var quantitaNonMine = (maxRange - quantitaMine);
 var numeroImmissioniUtente = 0;
-var arrayImmissioni = []; //NOTE: MANCA CONTROLLO SU IMMISSIONE DI NUM RIPETUTI
+var arrayImmissioni = [];
 var isMina = false;
 
 while ( (isMina === false) && (numeroImmissioniUtente < quantitaNonMine) ) {
 
   var numUtente = parseInt( prompt("scegli un numero da 1 a " + maxRange) );
 
-  arrayImmissioni.push(numUtente);
+  while ( checkDoppi(numUtente, arrayImmissioni) ) {
+
+    numUtente = parseInt( prompt("hai già scelto questo numero!") );
+
+  }
+
+  if ( checkDoppi(numUtente, arrayImmissioni) === false )  {
+
+    arrayImmissioni.push(numUtente);
+
+  }
 
   while ( isNaN(numUtente) || numUtente > maxRange || numUtente < 1 ) {
 
-    numUtente = prompt("errore. inserisci un numero valido.");
+    numUtente = parseInt( prompt("errore. inserisci un numero valido.") );
 
   }
 
@@ -135,3 +145,8 @@ if (isMina === false) {
   console.log( "hai perso... " + "il tuo punteggio è " + parseInt((numeroImmissioniUtente - 1)) );
 
 }
+
+
+//BUGZ:
+// se inserisco un valore che è isNaN e poi un numero, viene riconosciuto il numero ma viene pushato isNaN
+// se l'utente non sceglie il livello di difficoltà viene assegnata la vittoria
